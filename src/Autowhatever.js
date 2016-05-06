@@ -217,6 +217,7 @@ export default class Autowhatever extends Component {
     const inputProps = {
       type: 'text',
       value: '',
+      ref: 'input',
       autoComplete: 'off',
       role: 'combobox',
       'aria-autocomplete': 'list',
