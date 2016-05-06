@@ -163,7 +163,7 @@ export default class Autowhatever extends Component {
   }
 
   renderItems(theme) {
-    const { items } = this.props;
+    const { items, auxiliarComponent } = this.props;
 
     if (items.length === 0) {
       return null;
@@ -174,6 +174,7 @@ export default class Autowhatever extends Component {
           role="listbox"
           {...theme('itemsContainer', 'itemsContainer')}>
         {this.renderItemsList(theme, items, null)}
+        {auxiliarComponent}
       </ul>
     );
   }
@@ -218,7 +219,6 @@ export default class Autowhatever extends Component {
       value: '',
       autoComplete: 'off',
       role: 'combobox',
-      ref: 'input',
       'aria-autocomplete': 'list',
       'aria-owns': this.getItemsContainerId(),
       'aria-expanded': isOpen,
