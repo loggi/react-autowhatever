@@ -163,7 +163,7 @@ export default class Autowhatever extends Component {
   }
 
   renderItems(theme) {
-    const { items, auxiliarComponent } = this.props;
+    const { items, auxiliarComponent, auxiliarComponentPosition } = this.props;
 
     if (items.length === 0) {
       return null;
@@ -173,8 +173,9 @@ export default class Autowhatever extends Component {
       <ul id={this.getItemsContainerId()}
           role="listbox"
           {...theme('itemsContainer', 'itemsContainer')}>
+        {auxiliarComponentPosition === 'top' && auxiliarComponent}
         {this.renderItemsList(theme, items, null)}
-        {auxiliarComponent}
+        {auxiliarComponentPosition === 'bottom' && auxiliarComponent}
       </ul>
     );
   }
