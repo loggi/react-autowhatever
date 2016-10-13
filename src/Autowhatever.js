@@ -210,7 +210,7 @@ export default class Autowhatever extends Component {
   }
 
   render() {
-    const { multiSection, focusedSectionIndex, focusedItemIndex } = this.props;
+    const { multiSection, focusedSectionIndex, focusedItemIndex, customInput } = this.props;
     const theme = themeable(this.props.theme);
     const renderedItems = multiSection ? this.renderSections(theme) : this.renderItems(theme);
     const isOpen = (renderedItems !== null);
@@ -230,9 +230,11 @@ export default class Autowhatever extends Component {
       onKeyDown: this.props.inputProps.onKeyDown && this.onKeyDown
     };
 
+    const Input = customInput ? customInput : 'input';
+
     return (
       <div {...theme('container', 'container', isOpen && 'containerOpen')}>
-        <input {...inputProps} />
+        <Input {...inputProps} />
         {renderedItems}
       </div>
     );
