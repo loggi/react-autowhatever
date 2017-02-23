@@ -83,7 +83,7 @@ export default class Autowhatever extends Component {
     return (
       <div {...theme('itemsListContainer', 'itemsListContainer')}>
         {
-          return items.map((item, itemIndex) => {
+          items.map((item, itemIndex) => {
             const itemPropsObj = isItemPropsFunction
               ? this.props.itemProps({ sectionIndex, itemIndex })
               : this.props.itemProps;
