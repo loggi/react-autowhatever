@@ -119,7 +119,7 @@ export default class Autowhatever extends Component {
                 {renderItem(item)}
               </li>
             );
-          });
+          })
         }
       </div>
     );
