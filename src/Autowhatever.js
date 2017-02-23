@@ -80,43 +80,50 @@ export default class Autowhatever extends Component {
     const { renderItem, focusedSectionIndex, focusedItemIndex } = this.props;
     const isItemPropsFunction = (typeof this.props.itemProps === 'function');
 
-    return items.map((item, itemIndex) => {
-      const itemPropsObj = isItemPropsFunction
-        ? this.props.itemProps({ sectionIndex, itemIndex })
-        : this.props.itemProps;
-      const { onMouseEnter, onMouseLeave, onMouseDown, onClick } = itemPropsObj;
+    return (
+      <div {...theme('itemsListContainer', 'itemsListContainer')}>
+        {
+          return items.map((item, itemIndex) => {
+            const itemPropsObj = isItemPropsFunction
+              ? this.props.itemProps({ sectionIndex, itemIndex })
+              : this.props.itemProps;
+            const { onMouseEnter, onMouseLeave, onMouseDown, onClick } = itemPropsObj;
 
-      const onMouseEnterFn = onMouseEnter ?
-        event => onMouseEnter(event, { sectionIndex, itemIndex }) :
-        noop;
-      const onMouseLeaveFn = onMouseLeave ?
-        event => onMouseLeave(event, { sectionIndex, itemIndex }) :
-        noop;
-      const onMouseDownFn = onMouseDown ?
-        event => onMouseDown(event, { sectionIndex, itemIndex }) :
-        noop;
-      const onClickFn = onClick ?
-        event => onClick(event, { sectionIndex, itemIndex }) :
-        noop;
-      const itemProps = {
-        id: this.getItemId(sectionIndex, itemIndex),
-        role: 'option',
-        ...theme(itemIndex, 'item', sectionIndex === focusedSectionIndex &&
-                                    itemIndex === focusedItemIndex &&
-                                    'itemFocused'),
-        ...itemPropsObj,
-        onMouseEnter: onMouseEnterFn,
-        onMouseLeave: onMouseLeaveFn,
-        onMouseDown: onMouseDownFn,
-        onClick: onClickFn
-      };
+            const onMouseEnterFn = onMouseEnter ?
+              event => onMouseEnter(event, { sectionIndex, itemIndex }) :
+              noop;
+            const onMouseLeaveFn = onMouseLeave ?
+              event => onMouseLeave(event, { sectionIndex, itemIndex }) :
+              noop;
+            const onMouseDownFn = onMouseDown ?
+              event => onMouseDown(event, { sectionIndex, itemIndex }) :
+              noop;
+            const onClickFn = onClick ?
+              event => onClick(event, { sectionIndex, itemIndex }) :
+              noop;
+            const itemProps = {
+              id: this.getItemId(sectionIndex, itemIndex),
+              role: 'option',
+              ...theme(itemIndex, 'item', sectionIndex === focusedSectionIndex &&
+                itemIndex === focusedItemIndex &&
+                'itemFocused'),
+              ...itemPropsObj,
+              onMouseEnter: onMouseEnterFn,
+              onMouseLeave: onMouseLeaveFn,
+              onMouseDown: onMouseDownFn,
+              onClick: onClickFn
+            };
 
-      return (
-        <li {...itemProps}>
-          {renderItem(item)}
-        </li>
-      );
-    });
+            return (
+              <li {...itemProps}>
+                {renderItem(item)}
+              </li>
+            );
+          });
+        }
+      </div>
+    );
+
   }
 
   renderSections(theme) {
