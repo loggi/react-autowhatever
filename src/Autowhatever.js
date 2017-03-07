@@ -19,6 +19,7 @@ export default class Autowhatever extends Component {
     theme: PropTypes.object,               // Styles. See: https://github.com/markdalgleish/react-themeable
     input: PropTypes.any,
     customRenderInput: PropTypes.func,
+    customRenderList: PropTypes.func,
     auxiliarComponent: PropTypes.any,
     auxiliarComponentPosition: PropTypes.string,
     itemProps: PropTypes.oneOfType([       // Arbitrary item props
@@ -61,16 +62,22 @@ export default class Autowhatever extends Component {
     super(props);
 
     const { inputProps, renderedItems } = this.getInputPropsAndItems(props);
-    const { customRenderInput, input } = props;
+    const { customRenderInput, customRenderList, input } = props;
     let renderInput = true;
+    let renderList = true;
 
     if (typeof customRenderInput === 'function') {
       renderInput = customRenderInput(inputProps);
     }
 
+    if (typeof customRenderList === 'function') {
+      renderList = customRenderList(renderedItems);
+    }
+
     this.onKeyDown = this.onKeyDown.bind(this);
     this.state = {
       renderInput,
+      renderList,
       input,
       inputProps,
       renderedItems
@@ -261,15 +268,21 @@ export default class Autowhatever extends Component {
 
   componentWillReceiveProps(nextProps) {
     const { inputProps, renderedItems } = this.getInputPropsAndItems(nextProps);
-    const { customRenderInput, input } = nextProps;
+    const { customRenderInput, customRenderList, input } = nextProps;
     let renderInput = true;
+    let renderList = true;
 
     if (typeof customRenderInput === 'function') {
       renderInput = customRenderInput(inputProps);
     }
 
+    if (typeof customRenderList === 'function') {
+      renderList = customRenderList(renderedItems);
+    }
+
     this.setState({
       renderInput,
+      renderList,
       input,
       inputProps,
       renderedItems
@@ -281,7 +294,8 @@ export default class Autowhatever extends Component {
       input: Input,
       inputProps,
       renderedItems,
-      renderInput
+      renderInput,
+      renderList
     } = this.state;
 
     const theme = themeable(this.props.theme);
@@ -294,7 +308,9 @@ export default class Autowhatever extends Component {
             {...inputProps}
           />
         }
-        {renderedItems}
+        {renderList &&
+          renderedItems
+        }
       </div>
     );
   }
