@@ -1,6 +1,6 @@
 {
   "name": "@loggi/react-autowhatever",
-  "version": "3.2.7",
+  "version": "4.0.0-alpha.1",
   "description": "Accessible rendering layer for Autosuggest and Autocomplete components",
   "main": "dist/Autowhatever.js",
   "repository": {
@@ -23,8 +23,9 @@
     "prepublish": "npm run dist"
   },
   "dependencies": {
-    "react-themeable": "^1.0.1",
-    "section-iterator": "^2.0.0"
+    "prop-types": "15.6.0",
+    "react-themeable": "1.0.1",
+    "section-iterator": "2.0.0"
   },
   "peerDependencies": {
     "react": "^0.14.7 || ^15.0.1"
