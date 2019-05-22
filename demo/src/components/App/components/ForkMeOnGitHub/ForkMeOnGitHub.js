@@ -1,6 +1,7 @@
 import styles from './ForkMeOnGitHub.less';
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 export default class ForkMeOnGitHub extends Component {
   static propTypes = {
