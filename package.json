@@ -23,7 +23,7 @@
     "prepublish": "npm run dist"
   },
   "dependencies": {
-    "prop-types": "^15.6.0",
+    "prop-types": "15.6.0",
     "react-themeable": "^1.0.1",
     "section-iterator": "^2.0.0"
   },
