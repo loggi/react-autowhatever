@@ -1,6 +1,7 @@
 import theme from '../theme.less';
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { updateInputValue } from 'actions/app';
 import Autowhatever from 'Autowhatever';
