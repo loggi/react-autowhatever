@@ -1,7 +1,6 @@
 import styles from './SourceCodeLink.less';
 
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component, PropTypes } from 'react';
 
 export default class SourceCodeLink extends Component {
   static propTypes = {
